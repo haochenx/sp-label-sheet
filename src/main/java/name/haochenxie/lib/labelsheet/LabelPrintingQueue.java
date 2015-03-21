@@ -55,6 +55,16 @@ public class LabelPrintingQueue {
     queue.addAll(labels);
   }
 
+  public void addJob(LabelPrintable label, int repeat) {
+    for (int i=0; i < repeat; ++i) {
+      queue.addLast(label);
+    }
+  }
+
+  public void addSheetJob(LabelPrintable label) {
+    addJob(label, sheetLayout.getLabelCount());
+  }
+
   protected Printable renderQueue() {
     List<LabelPrintable> labels = new ArrayList<>(queue);
     queue.clear();
